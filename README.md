@@ -12,6 +12,13 @@ si se quiere conectar con la base de datos por medio de un administrador
 se recomienda realizarlo por medio de pgAdmin4
 ```
 
+# Pismas commands
+```
+npx prisma init
+npx prisma migrate dev
+npx prisma generate
+```
+
 # Prod
 
 # Stage

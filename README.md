@@ -1,16 +1,20 @@
 # Development
 paso a paso para levantar la app en desarrollo
 
-1. levantar la base de datos
+1. Levantar la base de datos
 ```
 docker-compose up -d
 ```
 
-2. conectarse con la base de datos
+2. Conectarse con la base de datos
 ```
 si se quiere conectar con la base de datos por medio de un administrador
 se recomienda realizarlo por medio de pgAdmin4
 ```
+
+3. Reemplazar las variables de entorno
+4. ejecutar el la ruta seed para [crear la base de datos](http://localhost:3000/api/seed)
+
 
 # Pismas commands
 ```

@@ -7,6 +7,7 @@ interface Segments {
   }
 }
 
+// funcion get que por defecto como segundo parametro recibe los params que se envian
 export async function GET(request: Request, {params}: Segments) {
   const todo = await prisma.todo.findFirst({
     where: {

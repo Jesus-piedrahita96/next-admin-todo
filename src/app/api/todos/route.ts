@@ -24,6 +24,8 @@ export async function GET(request: Request) {
   return NextResponse.json(todos)
 }
 
+
+// Schema de validacion de datos para crear un todo
 const postSchema = yup.object({
   description: yup.string().required(),
   complete: yup.boolean().optional().default(false)

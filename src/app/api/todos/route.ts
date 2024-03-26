@@ -59,3 +59,16 @@ export async function POST(request: Request) {
     NextResponse.json({message: error}, {status: 400})
   }
 }
+
+export async function DELETE(request: Request) {
+  try {
+    const completedTodos = await prisma.todo.deleteMany({
+      where: {
+        complete: true
+      }
+    })
+    return NextResponse.json({ message: completedTodos }, {status: 200})
+  } catch (error) {
+    NextResponse.json({ message: error }, { status: 400 })
+  }
+}

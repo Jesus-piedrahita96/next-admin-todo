@@ -29,7 +29,8 @@ export default function SidebarItem() {
         <li key={index}>
           <Link
             href={item.href}
-            className={`relative px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group
+            className={`relative px-4 py-3 flex items-center space-x-4 rounded-md
+            hover:bg-gradient-to-r from-sky-600 to-cyan-400
             ${pathname === item.href ? 'text-white bg-gradient-to-r from-sky-600 to-cyan-400': ''}`}>
           {item.image}
           <span className="-mr-1 font-medium group-hover:text-gray-700">{item.name}</span>

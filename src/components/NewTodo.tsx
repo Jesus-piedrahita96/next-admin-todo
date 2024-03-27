@@ -8,8 +8,10 @@ import { useRouter } from 'next/navigation';
 import { IoTrashOutline } from 'react-icons/io5';
 
 // Fetch to new todo
-import { postTodo } from '@/todos'
-import { deleteTodo } from '@/todos'
+// import { postTodo } from '@/todos'
+import { addTodo } from '@/todos';
+import { deleteTodos } from '@/todos';
+// import { deleteTodo } from '@/todos'
 
 
 export const NewTodo = () => {
@@ -19,15 +21,15 @@ export const NewTodo = () => {
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     if (description.trim().length === 0) return;
-    await postTodo(description)
-    router.refresh()
+    await addTodo(description)
+    // router.refresh()
     setDescription('')
   }
 
-  const handleDelete = async () => {
-    await deleteTodo()
-    router.refresh()
-  }
+  // const handleDelete = async () => {
+  //   await deleteTodo()
+  //   router.refresh()
+  // }
 
   return (
     <form onSubmit={handleSubmit}  className='flex w-full ml-6'>
@@ -48,7 +50,7 @@ export const NewTodo = () => {
       <span className='flex flex-1'></span>
 
       <button
-        onClick={handleDelete}
+        onClick={() => deleteTodos()}
         type='button' className="flex items-center justify-center rounded ml-2 bg-red-400 p-2 text-white hover:bg-red-700 transition-all"
       >
         <IoTrashOutline />

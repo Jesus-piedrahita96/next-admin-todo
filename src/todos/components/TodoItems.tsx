@@ -8,6 +8,8 @@ import styles from './TodoItems.module.css'
 // React icons
 import { IoCheckboxOutline } from "react-icons/io5";
 import { MdCheckBoxOutlineBlank } from "react-icons/md";
+import { startTransition, useOptimistic } from "react";
+import { boolean } from "yup";
 
 // Interfaces
 interface Props {
@@ -17,22 +19,36 @@ interface Props {
 
 
 export default function TodoItems({ todo, toogleTodo  }: Props) {
+  const [todoOptimistac, setTodoOptimistac] = useOptimistic(
+    todo,
+    (state, newComplete: boolean) => ({ ...state, complete: newComplete })
+  )
+
+  const handleOnToggle = async () => {
+    try {
+      startTransition(() => setTodoOptimistac(!todoOptimistac.complete))
+      await toogleTodo(todoOptimistac.id, !todoOptimistac.complete)
+    } catch (error) {
+      startTransition(() => setTodoOptimistac(!todoOptimistac.complete))
+    }
+  }
+
   return (
-    <div className={`${todo.complete ? styles.todoDone : styles.todoPending}`}>
+    <div className={`${todoOptimistac.complete ? styles.todoDone : styles.todoPending}`}>
       <div className="flex flex-col sm:flex-row justify-start items-center gap-4">
 
         <div className={`
           flex p2 rounded-md
           hover: bg-opacity-60 cursor-pointer
-          ${todo.complete ? 'bg-blue-200' : 'bg-red-200'}
+          ${todoOptimistac.complete ? 'bg-blue-200' : 'bg-red-200'}
         `}
-          onClick={() => toogleTodo(todo.id, !todo.complete)}
+          onClick={handleOnToggle}
         >
-          {todo.complete ? <IoCheckboxOutline size={30} /> : <MdCheckBoxOutlineBlank size={30} />}
+          {todoOptimistac.complete ? <IoCheckboxOutline size={30} /> : <MdCheckBoxOutlineBlank size={30} />}
         </div>
 
         <div className="text-center sm:text-left">
-          {todo.description}
+          {todoOptimistac.description}
         </div>
       </div>
     </div>

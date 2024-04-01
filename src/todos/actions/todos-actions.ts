@@ -19,6 +19,7 @@ export const updateTodos = async (id: string, complete: boolean): Promise<Todo |
   return updatedTodo
 }
 
+// crear nuevos todos
 export const addTodo = async (description: string): Promise<Todo | void> => {
   try {
     const createTodo = await prisma.todo.create({ data: { description } })
@@ -30,6 +31,7 @@ export const addTodo = async (description: string): Promise<Todo | void> => {
   }
 }
 
+// eliminar todos
 export const deleteTodos = async (): Promise<void> => {
   try{
     await prisma.todo.deleteMany({ where: { complete: true } })

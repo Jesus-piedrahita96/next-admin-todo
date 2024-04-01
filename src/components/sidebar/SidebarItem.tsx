@@ -8,6 +8,8 @@ import { usePathname } from "next/navigation"
 import { MdDashboard } from "react-icons/md";
 import { SiFastapi } from "react-icons/si";
 import { FaServer } from "react-icons/fa";
+import { FaCookieBite } from "react-icons/fa6";
+
 
 
 
@@ -15,7 +17,8 @@ import { FaServer } from "react-icons/fa";
 const items = [
   { name: 'Dashboard', href: '/dashboard', image: <MdDashboard size={30} /> },
   { name: 'Rest fullApi', href: '/dashboard/rest-todo', image: <SiFastapi size={30} /> },
-  {name: 'Server actions', href: '/dashboard/server-actions', image: <FaServer   size={30} />},
+  { name: 'Server actions', href: '/dashboard/server-actions', image: <FaServer size={30} /> },
+  { name: 'Cookies', href: '/dashboard/cookies', image: <FaCookieBite size={30} /> },
 ]
 
 export default function SidebarItem() {

@@ -1,7 +1,12 @@
+'use client'
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 
 // React Icons
 import { IoAddCircleOutline, IoTrashOutline } from "react-icons/io5"
+
+// Shopping-cart
+import { addProductToCart } from "@/shopping-cart"
 
 // Products
 // Components
@@ -10,7 +15,13 @@ import { Star } from "@/products"
 // Type
 import { Product } from '@/products'
 
-export const ProductCard = ({name, price, rating, image}: Product) => {
+export const ProductCard = ({ id, name, price, rating, image }: Product) => {
+  const router = useRouter()
+  const handleAddToCart = () => {
+    addProductToCart(id)
+    router.refresh()
+  }
+
   return (
     <div className="bg-white shadow rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-100">
 
@@ -52,7 +63,9 @@ export const ProductCard = ({name, price, rating, image}: Product) => {
 
           <div className="flex">
             <button
-              className="text-white mr-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              className="text-white mr-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              onClick={handleAddToCart}
+            >
                 <IoAddCircleOutline size={25} />
             </button>
             <button

@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 import { CiChat1, CiMenuBurger, CiSearch, CiShoppingCart } from "react-icons/ci";
 
 export function TopMenu() {
-  const cookieStore = cookies()
+  const cookieStore = cookies() // obtengo las funcionalidades de las cookies al lado del servidor
   const cartValue = JSON.parse(cookieStore.get('cart')?.value ?? '{}') as {[id: string]: number}
   const totalItems = [...Object.values(cartValue)].reduce((acum, value) => acum + value, 0)
 

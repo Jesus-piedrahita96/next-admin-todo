@@ -1,6 +1,12 @@
+// next
 // next-headers son cookies al lado del servidor
 import { cookies } from "next/headers";
+import Link from "next/link";
+
+// React icons
 import { CiChat1, CiMenuBurger, CiSearch, CiShoppingCart } from "react-icons/ci";
+
+//------------------------------------
 
 export function TopMenu() {
   const cookieStore = cookies() // obtengo las funcionalidades de las cookies al lado del servidor
@@ -31,10 +37,13 @@ export function TopMenu() {
           <button className="flex items-center justify-center w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200">
             <CiChat1 size={25} />
           </button>
-          <button className="relative  flex items-center justify-center w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200">
+          <Link
+            href={'cart'}
+            className="relative  flex items-center justify-center w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200"
+          >
             <span className="absolute w-4 h-4 -right-2 -bottom-2 text-sky-700 font-bold">{ totalItems }</span>
             <CiShoppingCart size={25} />
-          </button>
+          </Link>
         </div>
       </div>
     </div>

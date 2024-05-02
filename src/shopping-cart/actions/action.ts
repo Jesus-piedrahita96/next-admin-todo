@@ -26,14 +26,17 @@ export const addProductToCart = (id: string) => {
   setCookie('cart', JSON.stringify(cookieCart))
 }
 
-// todo: eliminar las cookies del carrito
 // eliminar productos del carrito
 export const deleteProductCart = (id: string) => {
   const cookieCart = getCookieCart()
-  for (const obj of Object.keys(cookieCart)) {
-    if (obj === id) {
-      cookieCart[id] = 0
-    }
-  }
+
+  // esto es una forma de eliminar un productos de las cookies
+  // for (const obj of Object.keys(cookieCart)) {
+  //   if (obj === id) {
+  //     cookieCart[id] = 0
+  //   }
+  // }
+
+  delete cookieCart[id]
   setCookie('cart', JSON.stringify(cookieCart))
 }

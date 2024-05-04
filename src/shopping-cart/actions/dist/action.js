@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.deleteProductCart = exports.addProductToCart = exports.getCookieCart = void 0;
+exports.deleteOneProduct = exports.deleteProductCart = exports.addProductToCart = exports.getCookieCart = void 0;
 // cookies-next es al lado del cliente
 var cookies_next_1 = require("cookies-next");
 // obtener las cookies del carrito
@@ -35,4 +35,15 @@ exports.deleteProductCart = function (id) {
     // }
     delete cookieCart[id];
     cookies_next_1.setCookie('cart', JSON.stringify(cookieCart));
+};
+exports.deleteOneProduct = function (id) {
+    var product = exports.getCookieCart();
+    console.log(product);
+    if (product[id]) {
+        product[id] -= 1;
+    }
+    else if (product[id] === 0) {
+        delete product[id];
+    }
+    cookies_next_1.setCookie('cart', JSON.stringify(product));
 };

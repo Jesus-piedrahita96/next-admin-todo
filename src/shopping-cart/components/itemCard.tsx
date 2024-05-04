@@ -8,10 +8,10 @@ import { useRouter } from "next/navigation";
 import type { Product } from "@/products"
 
 // Shopping cart
-import {  } from "../actions/action";
+import { addProductToCart, deleteOneProduct } from "../actions/action";
 
 // React icons
-import { IoAddCircleOutline, IoRemove } from "react-icons/io5";
+import { IoAddCircleOutline, IoRemove, IoTrashOutline } from "react-icons/io5";
 
 
 interface Props {
@@ -24,13 +24,13 @@ export const ItemCard = ({ product, quantity }: Props) => {
 
   const router = useRouter();
 
-  function onAddToCart() {
-    //TODO: addProductToCart(product.id);
+  function handleOnAddToCart() {
+    addProductToCart(product.id)
     router.refresh();
   }
 
-  function onRemoveItem() {
-    //TODO: removeSingleItemFromCart(product.id);
+  function handleOnRemoveItem() {
+    deleteOneProduct(product.id)
     router.refresh();
   }
 
@@ -70,16 +70,28 @@ export const ItemCard = ({ product, quantity }: Props) => {
 
       <div className="flex p-5 items-center justify-center">
         <button
-          onClick={ onAddToCart }
+          onClick={ handleOnAddToCart }
           className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             <IoAddCircleOutline size={25} />
         </button>
-        <span className="text-2xl text-white mx-10">{quantity}</span>
-        <button
-          onClick={onRemoveItem}
-          className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+        <span className="text-2xl text-white mx-10">{quantity === 0 ? '' : quantity}</span>
+        {
+          quantity !== 0 ? (
+          <button
+            onClick={handleOnRemoveItem}
+            className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+          >
             <IoRemove size={25} />
-        </button>
+          </button>
+          ) : (
+          <button
+            onClick={handleOnRemoveItem}
+            className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+          >
+            <IoTrashOutline size={20} />
+          </button>
+        )
+        }
       </div>
     </div>
   )
